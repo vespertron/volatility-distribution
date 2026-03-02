@@ -53,6 +53,13 @@ The intent is descriptive, not causal: the analysis examines patterns of alignme
 
 ## Data Pipeline
 
+This project uses publicly avaiable data:
+- California WARN Act filings (2022-2024)
+- New York Fed Household Debt and Credit Report (California-specific data, 2022-2024)
+- Public financial data for selected technology companies (2022-2024)
+
+Raw data files are stored in `/data_raw`. Cleaned datasets are stored in `/data_clean`.
+
 1. Download layoff event data (Layoffs.fyi, California WARN)
 2. Clean and standardize dates to quarterly periods
 3. Aggregate layoffs by quarter

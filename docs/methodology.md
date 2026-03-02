@@ -10,7 +10,21 @@ This project examines a structural question:
 
 Rather than treating layoffs or automation as isolated events, this research models uncertainty as a system-level force that must be absorbed somewhere — within firms, by workers, or by households.
 
-The goal is not to assign blame, but to make risk distribution measurable.
+The objective is to make risk distribution measurable.
+
+---
+
+## Scope
+
+- Geography: California  
+- Sector: Technology  
+- Time period: 2022–2024  
+- Unit of analysis: Quarterly observations  
+
+The California technology sector is selected due to:
+- Concentrated layoff activity during recent volatility cycles  
+- Rapid AI adoption  
+- Regional economic clustering  
 
 ---
 
@@ -20,31 +34,52 @@ Do organizations stabilize financial outcomes by increasing labor volatility, an
 
 More broadly:
 
-- Is workforce adjustment becoming the primary flexibility mechanism in volatile sectors?
-- How does AI adoption intersect with employment stability?
-- What are the downstream implications for household resilience?
+- Is workforce adjustment becoming a primary flexibility mechanism in volatile sectors?
+- Are periods of elevated layoff activity followed by measurable shifts in household financial strain?
+- What are the implications for labor market resilience under persistent uncertainty?
 
 ---
 
 ## Research Framework
 
-This project evaluates three interconnected systems:
+This project evaluates three interconnected systems.
 
 ### 1. Organizational Labor Volatility
-- Technology sector layoffs in California  
-- Sources: Layoffs.fyi and California WARN filings  
-- Measured quarterly
+
+Measured using California WARN Act filings (Employment Development Department).
+
+Metrics:
+- Total employees affected by layoffs per quarter
+- Number of firms conducting layoffs per quarter
+
+Layoff events are aggregated to quarterly observations.
+
+---
 
 ### 2. Firm Financial Stability
-- Revenue and earnings variance  
-- Public financial filings  
+
+Measured using rolling variance in:
+- Revenue
+- Earnings per share (EPS)
+- Operating margin
+
+Data sources:
+- Public quarterly financial filings for selected technology firms
+
+Financial volatility is calculated over an 8-quarter rolling window where possible.
+
+---
 
 ### 3. Household Financial Resilience
-- Credit delinquency rates  
-- Revolving credit balances  
-- New York Fed Household Debt and Credit data  
 
-Datasets are aligned quarterly to examine whether employment volatility precedes shifts in household financial stress.
+Measured using California state-level data from the New York Fed Household Debt and Credit dataset.
+
+Indicators:
+- Credit card delinquency rate (90+ days)
+- New delinquency rate
+- Revolving credit balances
+
+These indicators serve as early proxies for household financial strain.
 
 ---
 
@@ -56,37 +91,78 @@ LSAI compares labor volatility to financial volatility:
 
 **LSAI = Labor Volatility ÷ Financial Volatility**
 
-The index illustrates whether variability concentrates more heavily in employment than in financial performance during uncertain periods.
+Interpretation:
 
-The analysis is descriptive and observational.
+- LSAI > 1 suggests volatility is more concentrated in employment than in financial performance.
+- LSAI < 1 suggests financial outcomes fluctuate more than workforce levels.
 
----
-
-## Why This Matters
-
-Future-of-work debates often focus on job creation or job loss. This project instead focuses on **volatility management**.
-
-If uncertainty is increasingly absorbed through workforce adjustments, policy implications extend to:
-
-- Workforce transition programs  
-- Income stabilization mechanisms  
-- Unemployment insurance design  
-- AI governance  
-- Regional economic resilience  
-
-Understanding how risk is distributed may inform how institutions adapt to a more volatile labor market.
+The index is descriptive and does not imply causation.
 
 ---
 
-## Current Status
+## Temporal Alignment
 
-- Research framing and methodology established  
+All datasets are aligned at the quarterly level.
+
+Lagged comparisons (1–2 quarters) are used to examine whether elevated layoff activity precedes measurable changes in household financial indicators.
+
+This approach reflects:
+- The delay between employment disruption and household financial stress
+- Reporting intervals in public datasets
+
+---
+
+## Analytical Approach
+
+This analysis uses:
+
+- Rolling variance calculations  
+- Descriptive statistics  
+- Lagged correlation analysis  
+- Event-aligned visualization  
+
+The project is observational. No causal inference techniques are applied in the current phase.
+
+---
+
+## Limitations
+
+- WARN filings capture large workforce reductions and may exclude smaller adjustments.
+- Household credit data is state-level and not industry-specific.
+- Macroeconomic conditions (e.g., interest rates, inflation) may influence both layoffs and household credit outcomes.
+- Correlation does not imply causation.
+
+Future phases may incorporate:
+- Cross-state comparison
+- Sectoral control groups
+- Macroeconomic control variables
+- Occupational composition analysis
+
+---
+
+## Policy Relevance
+
+If volatility is increasingly absorbed through employment adjustments, future-of-work policy must address not only job quantity but job stability.
+
+Implications may include:
+
+- Workforce transition and retraining design  
+- Income smoothing mechanisms  
+- Unemployment insurance modernization  
+- Regional resilience planning  
+- AI governance and labor market safeguards  
+
+---
+
+## Status
+
+- Research framework established  
 - Data ingestion in progress  
 
 Upcoming phases:
 - Household credit alignment  
-- Spending behavior analysis  
-- AI adoption and role composition analysis  
+- Consumer spending analysis  
+- Occupational and skill composition analysis  
 
 ---
 
