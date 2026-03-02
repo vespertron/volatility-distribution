@@ -91,6 +91,7 @@ Understanding this distribution may inform:
 **Current phase:** data acquisition and initial labor volatility index construction.
 
 **Upcoming:**
+- scrape Layoffs.fyi for enhanced credibility
 - household credit alignment
 - spending behavior analysis
 - narrative interpretation
@@ -98,6 +99,8 @@ Understanding this distribution may inform:
 ---
 
 ## Author
-Vesper Annstas<br>
+Vesper Annstas
+<br>
 https://www.linkedin.com/in/vesperannstas/
+<br><br>
 This project originated as an attempt to translate an ambiguous question into a measurable analytical framework. It may or may not produce actionable insights.
