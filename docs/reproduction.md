@@ -1,0 +1,164 @@
+# Reproduction Guide
+
+This guide explains how to reproduce Version 1 of the analysis using **California WARN** data (labor volatility) and **NY Fed Household Debt & Credit** data (household financial stress), aligned at **quarterly** frequency.
+
+> Goal (V1): Produce a quarterly dataset and basic visuals showing layoff volatility in California tech and its temporal alignment with household credit stress indicators.
+
+---
+
+## 0) Prerequisites
+
+- Git
+- Python 3.10+ (recommended)
+- (Optional) Jupyter Notebook
+
+Install Python dependencies:
+
+```bash
+pip install pandas openpyxl
+```
+
+# 1) Repository Setup
+
+Clone the repo and enter the project directory:
+
+```
+git clone <YOUR_REPO_URL>
+cd <YOUR_REPO_NAME>
+```
+
+Recommended folder structure:
+
+`/data_raw` — raw downloaded files (not committed)
+
+`/data_clean` — cleaned outputs (not committed)
+
+`/scripts` — cleaning/aggregation scripts
+
+`/analysis` — notebooks and charts
+
+
+# 2) Download Data
+
+## 2.1 California WARN (Labor Volatility)
+
+Download the WARN dataset (Excel) from the California Employment Development Department (EDD) WARN page.
+
+Save as `data_raw/california_warn.xlsx`.
+
+
+## 2.2 NY Fed Household Debt & Credit (Household Stress)
+
+Download the NY Fed Household Debt & Credit dataset (state-level).
+
+Extract or filter to California and save as `data_raw/nyfed_hhdc_ca.csv`.
+
+Note: If you download a national file, you can filter to California in the cleaning step.
+
+
+# 3) Run Data Cleaning Scripts
+
+## 3.1 Clean WARN -> layoff_events
+
+Run:
+
+```bash
+python scripts/clean_warn.py
+```
+
+Expected output: `data_clean/layoff_events.csv`
+
+
+## 3.2 Aggregate WARN to quarterly totals -> layoffs_by_quarter
+
+Run:
+
+```bash
+python scripts/aggregate_layoffs.py
+```
+
+Expected output: `data_clean/layoffs_by_quarter.csv`
+
+
+## 3.3 Clean NY Fed Household Debt & Credit -> household_credit
+
+Run:
+
+```bash
+python scripts/clean_hhdc_ca.py
+```
+
+Expected output: `data_clean/household_credit.csv`
+
+
+# 4) Build the Unified Panel Dataset
+
+Run: `python scripts/build_panel.py`
+
+Expected output: `data_clean/uncertainty_transmission_panel.csv`
+
+This file should include (at minimum):
+
+- `quarter`
+- `layoffs_total`
+- `companies_laying_off`
+- `credit_card_delinquency_90`
+- `new_delinquency_rate`
+- `revolving_credit_balance`
+- `credit_stress_index`
+- lagged fields such as `layoffs_lag1`
+
+
+# 5) Generate Basic Charts (Optional)
+
+If you have a chart script:
+
+```bash
+python scripts/make_charts.py
+```
+
+Expected output (examples):
+
+- `visuals/layoffs_by_quarter.png`
+- `visuals/layoffs_vs_credit_stress_lag1.png`
+
+If you prefer notebooks, open:
+- `analysis/exploratory_notebook.ipynb`
+
+
+# 6) Common Issues
+## “File not found”
+
+Confirm raw files exist:
+- `data_raw/california_warn.xlsx`
+- `data_raw/nyfed_hhdc_ca.csv`
+
+## “Permission denied” (Windows)
+
+- Close Visual Studio (locks `.vs` index files)
+- Ensure `.vs/` is in `.gitignore`
+
+## Date parsing problems
+
+WARN and NY Fed date formats vary. If parsing fails:
+
+- Check the relevant script for column name assumptions
+- Validate date columns in the raw file
+
+
+# 7) Outputs
+
+Version 1 outputs should include:
+- Quarterly layoffs (CA) time series
+- Household credit stress time series (CA)
+- An aligned overlay view (including 1-quarter lag)
+
+# 8) Notes on Interpretation
+
+This project is **observational**.
+- Correlation and temporal alignment do not imply causation.
+- Results should be presented as patterns that may warrant deeper causal study.
+
+# Version
+
+V1: California WARN + NY Fed HHDC (California), quarterly alignment.
